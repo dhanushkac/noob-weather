@@ -11,24 +11,12 @@ VERIFY_TOKEN = 'dhanushkabro'
 bot = Bot(ACCESS_TOKEN)
 
 quick_replies_list = [{
-    "content_type":"text",
-    "title":"Meme",
-    "payload":"meme",
+    "content_type":"location",
 },
 {
     "content_type":"text",
-    "title":"Motivation",
-    "payload":"motivation",
-},
-{
-    "content_type":"text",
-    "title":"Shower Thought",
-    "payload":"Shower_Thought",
-},
-{
-    "content_type":"text",
-    "title":"Jokes",
-    "payload":"Jokes",
+    "title":"Other Location",
+    "payload":"other",
 }
 ]
 
