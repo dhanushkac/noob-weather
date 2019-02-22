@@ -57,8 +57,7 @@ def get_weather(location):
         elif "snow" in response.json().get("weather")[0].get("main").toLower():
             return "Yeah.. better to have one. It is snowing at " + location + " now."
     elif response.json().get("cod") == 200:
-        return_txt = 'It is ' + str(response.json().get("main").get("temp")) + ' at ' + location + ','
-        return_txt += response.json().get("sys").get("country") + 'now. \n'
+        return_txt = 'It is ' + str(response.json().get("main").get("temp")) + ' at ' + location + ',' + response.json().get("sys").get("country") + ' now.'
         return return_txt
     else:
 	    return 'Wrong city found, please provide correct city name'
