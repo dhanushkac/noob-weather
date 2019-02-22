@@ -50,15 +50,13 @@ def verify_fb_token(token_sent):
 def get_weather(location):
     base_url = 'http://api.openweathermap.org/data/2.5/weather?appid=7cf5d8961ea0214a980859a54766e28f&units=metric&q='
     response = requests.get(base_url + location.lower())
-    print(location.lower())
-    print(location.lower().find("coat"))
-    if location.lower().find("coat") != -1 and response.json().get("cod") == 200:
-        if response.json().get("weather")[0].get("main").lower().find("rain") != -1:
-            return "Yeah.. better to have one. It is rainy here"
-        elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
-            return "Yeah.. better to have one. It is snowing at " + location + " now."
-    elif response.json().get("cod") == 200:
+
+    if response.json().get("cod") == 200:
         return_txt = 'It is ' + str(response.json().get("main").get("temp")) + ' at ' + location + ',' + response.json().get("sys").get("country") + ' now.'
+        if response.json().get("weather")[0].get("main").lower().find("rain") != -1:
+            return_txt += "\n better to have a coat. It is raining."
+        elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
+            return_txt += "\n better to have a coat. It is snowing."
         return return_txt
     else:
 	    return 'Wrong city found, please provide a correct city name'
