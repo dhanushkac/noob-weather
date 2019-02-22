@@ -10,6 +10,28 @@ ACCESS_TOKEN = 'EAARgYhgQdwABANLTtwMYsmqPrV2kGbF88IrPgEm24Jku1qgNjn6gv7rBtE6617p
 VERIFY_TOKEN = 'dhanushkabro'
 bot = Bot(ACCESS_TOKEN)
 
+quick_replies_list = [{
+    "content_type":"text",
+    "title":"Meme",
+    "payload":"meme",
+},
+{
+    "content_type":"text",
+    "title":"Motivation",
+    "payload":"motivation",
+},
+{
+    "content_type":"text",
+    "title":"Shower Thought",
+    "payload":"Shower_Thought",
+},
+{
+    "content_type":"text",
+    "title":"Jokes",
+    "payload":"Jokes",
+}
+]
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -29,7 +51,7 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
                 if message['message'].get('text'):
-                    response_sent_text = get_weather(message['message'].get('text'))
+                    response_sent_text = get_weather(message['message'].get('text'), recipient_id)
                     send_message(recipient_id, response_sent_text)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
@@ -47,7 +69,7 @@ def verify_fb_token(token_sent):
 
 
 #chooses a random message to send to the user
-def get_weather(location):
+def get_weather(location, recipient_id):
     base_url = 'http://api.openweathermap.org/data/2.5/weather?appid=7cf5d8961ea0214a980859a54766e28f&units=metric&q='
     response = requests.get(base_url + location.lower())
 
@@ -59,7 +81,15 @@ def get_weather(location):
             return_txt += "\n\nBy the way, better to have a coat. It is snowing."
         return return_txt
     else:
-	    return 'Wrong city found, please provide a correct city name'
+        r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+            params={"access_token": ACCESS_TOKEN},
+            data=json.dumps({
+                "recipient": {"id": recipient_id},
+                "message": {"text": "Select one of the options",
+                            "quick_replies":quick_replies_list}
+            }),
+            headers={'Content-type': 'application/json'})
+	    #return 'Wrong city found, please provide a correct city name'
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
