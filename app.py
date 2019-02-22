@@ -53,9 +53,9 @@ def get_weather(location):
     print(location.lower())
     print(location.lower().find("coat"))
     if location.lower().find("coat") != -1 and response.json().get("cod") == 200:
-        if "rain" in response.json().get("weather")[0].get("main").lower():
+        if response.json().get("weather")[0].get("main").lower().find("rain") != -1:
             return "Yeah.. better to have one. It is rainy here"
-        elif "snow" in response.json().get("weather")[0].get("main").lower():
+        elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
             return "Yeah.. better to have one. It is snowing at " + location + " now."
     elif response.json().get("cod") == 200:
         return_txt = 'It is ' + str(response.json().get("main").get("temp")) + ' at ' + location + ',' + response.json().get("sys").get("country") + ' now.'
