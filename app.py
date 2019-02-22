@@ -50,7 +50,8 @@ def verify_fb_token(token_sent):
 def get_weather(location):
     base_url = 'http://api.openweathermap.org/data/2.5/weather?appid=7cf5d8961ea0214a980859a54766e28f&units=metric&q='
     response = requests.get(base_url + location.lower())
-	
+    print(location.lower())
+    print(location.lower().find("coat"))
     if location.lower().find("coat") != -1 and response.json().get("cod") == 200:
         if "rain" in response.json().get("weather")[0].get("main").lower():
             return "Yeah.. better to have one. It is rainy here"
@@ -60,7 +61,7 @@ def get_weather(location):
         return_txt = 'It is ' + str(response.json().get("main").get("temp")) + ' at ' + location + ',' + response.json().get("sys").get("country") + ' now.'
         return return_txt
     else:
-	    return 'Wrong city found, please provide correct city name'
+	    return 'Wrong city found, please provide a correct city name'
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
