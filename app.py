@@ -40,7 +40,7 @@ def receive_message():
                     # Facebook Messenger ID for user so we know where to send response back to
                     recipient_id = message['sender']['id']
                     init_msg = ['hi', 'hey', 'yo', 'bro', 'broo',
-                                'machan', 'meh', 'ado', 'adoo', 'oi',  'oii']
+                                'machan', 'meh', 'ado', 'adoo', 'oi',  'oii', 'noob', 'noob weather', 'hey noob']
                     if message['message'].get('text'):
                         if message['message'].get('text').lower() in init_msg:
                             init(recipient_id)
