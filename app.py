@@ -44,7 +44,7 @@ def receive_message():
                     if message['message'].get('text'):
                         if message['message'].get('text').lower() in init_msg:
                             init(recipient_id)
-                        elif message['message'].get('text') == "other":
+                        elif message['message'].get('text') == "Other Location":
                             send_message(
                                 recipient_id, "Okay.. Send me the city name")
                         else:
