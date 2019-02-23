@@ -81,7 +81,7 @@ def send_weather_by_city_name(recipient_id, location):
 
 
 def send_weather_by_lat_lon(recipient_id, lat, lon):
-    url = BASE_URL + '&lat=' + lat + '&lon=' + lon
+    url = BASE_URL + '&lat=' + str(lat) + '&lon=' + str(lon)
     response = call_weather_api(url)
 
     send_response(recipient_id, response)
