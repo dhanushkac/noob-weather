@@ -92,8 +92,8 @@ def send_response(recipient_id, response):
         send_message(recipient_id, get_response_text(response))
     elif response.json().get("cod") == 404:
         send_message(
-            recipient_id, 'No city found, please provide a correct city name')
-    init(recipient_id)
+            recipient_id, 'Hmm... 🤔 No city found, please provide a correct city name')
+        init(recipient_id)
 
 
 def get_response_text(response):
@@ -105,8 +105,26 @@ def get_response_text(response):
         return_txt += "\n\nBy the way, better to have a coat. It is raining."
     elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
         return_txt += "\n\nBy the way, better to have a coat. It is snowing."
+    
+    return_txt += getIcon(response.json().get("weather")[0].get("icon"))
 
     return return_txt
+
+def getIcon(icon):
+    if icon == "01d" or icon == "02d": #clear
+        return '☀⛅'
+    elif icon == "01n" or icon == "02n": #clear
+        return '🌔☁'
+    elif icon == '03d' or icon == '04d': #cloud
+        return '☁☁'
+    elif icon == '09d' or icon == '10d': #rain
+        return '🌦🌧'
+    elif icon == '11d' or icon == '11n': #thunder
+        return '🌩🌩'
+    elif icon == '13d' or icon == '13n':
+        return '❄❄❄'
+    elif icon == '50d' or icon == '50n':
+        return '🌫🌫🌫'
 
 
 def call_weather_api(url):
