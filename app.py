@@ -46,7 +46,7 @@ def receive_message():
                             init(recipient_id)
                         elif message['message'].get('text') == "Other Location":
                             send_message(
-                                recipient_id, "Okay.. Send me the city name")
+                                recipient_id, "Okay... Send me the city name")
                         else:
                             send_weather_by_city_name(
                                 recipient_id, message['message'].get('text'))
