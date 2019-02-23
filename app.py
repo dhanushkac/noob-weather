@@ -107,11 +107,14 @@ def get_response_text(response):
     elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
         return_txt += "\n\nBy the way, better to have a coat. It is snowing. "
     
-    #return_txt += getIcon(response.json().get("weather")[0].get("icon"))
+    return_txt += getIcon(response.json().get("weather")[0].get("icon"))
 
     return return_txt
 
 def getIcon(icon):
+    if type(icon) is not str:
+        return ""
+
     if icon == "01d" or icon == "02d": #clear
         return '☀⛅'
     elif icon == "01n" or icon == "02n": #clear
