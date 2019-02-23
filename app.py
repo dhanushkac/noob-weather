@@ -52,10 +52,10 @@ def receive_message():
                                 recipient_id, message['message'].get('text'))
                     # if user sends us a GIF, photo,video, or any other non-text item
                     if message['message'].get('attachments'):
-                        if message['message'].get('attachments').get("type") == "location":
-                            lat = message['message'].get('attachments').get(
+                        if message['message'].get('attachments')[0].get("type") == "location":
+                            lat = message['message'].get('attachments')[0].get(
                                 "payload").get("coordinates").get("lat")
-                            lon = message['message'].get('attachments').get(
+                            lon = message['message'].get('attachments')[0].get(
                                 "payload").get("coordinates").get("lon")
 
                             send_weather_by_lat_lon(recipient_id, lat, lon)
