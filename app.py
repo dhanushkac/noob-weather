@@ -44,9 +44,12 @@ def receive_message():
                     if message['message'].get('text'):
                         if message['message'].get('text').lower() in init_msg:
                             init(recipient_id)
-                        elif message['message'].get('text') == "Other Location":
+                        elif message['message'].get('text').lower().strip() == "other location":
                             send_message(
                                 recipient_id, "Okay... Send me the city name")
+                        elif message['message'].get('text').lower().strip() == "thanks" or message['message'].get('text').lower().strip() == "thank you":
+                            send_message(
+                                recipient_id, "You are welcome!")
                         else:
                             send_weather_by_city_name(
                                 recipient_id, message['message'].get('text'))
@@ -76,7 +79,7 @@ def verify_fb_token(token_sent):
 
 
 def send_weather_by_city_name(recipient_id, location):
-    url = BASE_URL + '&q=' + location.lower()
+    url = BASE_URL + '&q=' + location.lower().strip()
     response = call_weather_api(url)
 
     send_response(recipient_id, response)
