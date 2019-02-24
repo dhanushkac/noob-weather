@@ -88,9 +88,9 @@ def send_weather_by_lat_lon(recipient_id, lat, lon):
 
 
 def send_response(recipient_id, response):
-    if response.json().get("cod") == "200":
+    if str(response.json().get("cod")) == "200":
         send_message(recipient_id, get_response_text(response))
-    elif response.json().get("cod") == "404":
+    elif str(response.json().get("cod")) == "404":
         send_message(
             recipient_id, 'Hmm... 🤔 No city found, please provide a correct city name')
         init(recipient_id)
