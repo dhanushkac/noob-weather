@@ -84,6 +84,8 @@ def send_weather_by_lat_lon(recipient_id, lat, lon):
     url = BASE_URL + '&lat=' + str(lat) + '&lon=' + str(lon)
     response = call_weather_api(url)
 
+    print(response)
+
     send_response(recipient_id, response)
 
 
@@ -97,8 +99,6 @@ def send_response(recipient_id, response):
 
 
 def get_response_text(response):
-    print(response.json().get("name"))
-
     return_txt = 'It is ' + str(response.json().get("main").get("temp")) + '°C at ' + \
         response.json().get("name") + ',' + \
         response.json().get("sys").get("country") + ' now. '
