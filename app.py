@@ -121,9 +121,9 @@ def getIcon(icon):
         return '☀⛅'
     elif icon == "01n" or icon == "02n": #clear
         return '🌔☁'
-    elif icon == '03d' or icon == '04d': #cloud
+    elif icon == '03d' or icon == '04d' or icon == '03n' or icon == '04n': #cloud
         return '☁☁'
-    elif icon == '09d' or icon == '10d': #rain
+    elif icon == '09d' or icon == '10d' or icon == '10n' or icon == '09n': #rain
         return ' 🌦🌧'
     elif icon == '11d' or icon == '11n': #thunder
         return '🌩🌩'
