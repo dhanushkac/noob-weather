@@ -39,8 +39,7 @@ def receive_message():
                 if message.get('message'):
                     # Facebook Messenger ID for user so we know where to send response back to
                     recipient_id = message['sender']['id']
-                    init_msg = ['hi', 'hey', 'yo', 'bro', 'broo',
-                                'machan', 'meh', 'ado', 'adoo', 'oi',  'oii', 'noob', 'noob weather', 'hey noob']
+                    init_msg = ['hi', 'yo', 'noob', 'noob weather', 'hey noob', 'hello']
                     if message['message'].get('text'):
                         if message['message'].get('text').lower() in init_msg:
                             init(recipient_id)
@@ -89,15 +88,17 @@ def send_weather_by_lat_lon(recipient_id, lat, lon):
 
 
 def send_response(recipient_id, response):
-    if response.json().get("cod") == 200:
+    if response.json().get("cod") == "200":
         send_message(recipient_id, get_response_text(response))
-    elif response.json().get("cod") == 404:
+    elif response.json().get("cod") == "404":
         send_message(
             recipient_id, 'Hmm... 🤔 No city found, please provide a correct city name')
         init(recipient_id)
 
 
 def get_response_text(response):
+    print(response.json().get("name"))
+
     return_txt = 'It is ' + str(response.json().get("main").get("temp")) + '°C at ' + \
         response.json().get("name") + ',' + \
         response.json().get("sys").get("country") + ' now. '
@@ -107,12 +108,13 @@ def get_response_text(response):
     elif response.json().get("weather")[0].get("main").lower().find("snow") != -1:
         return_txt += "\n\nBy the way, better to have a coat. It is snowing. "
     
-    return_txt += getIcon(response.json().get("weather")[0].get("icon"))
+    if getIcon(response.json().get("weather")[0].get("icon")) is not None:
+        return_txt += getIcon(response.json().get("weather")[0].get("icon"))
 
     return return_txt
 
 def getIcon(icon):
-    if type(icon) is not str:
+    if type(icon) == type(None):
         return ""
 
     if icon == "01d" or icon == "02d": #clear
