@@ -100,7 +100,7 @@ def send_response(recipient_id, response):
     elif str(response.json().get("cod")) == "404":
         send_message(
             recipient_id, 'Hmm... 🤔 No city found, please provide a correct city name')
-        init(recipient_id)
+        '''init(recipient_id)'''
 
 
 def get_response_text(response):
