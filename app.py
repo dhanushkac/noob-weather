@@ -144,14 +144,7 @@ def call_weather_api(url):
 
 
 def init(recipient_id):
-    requests.post("https://graph.facebook.com/v2.6/me/messages",
-                  params={"access_token": ACCESS_TOKEN},
-                  data=json.dumps({
-                      "recipient": {"id": recipient_id},
-                      "message": {"text": "Hey, It's Noob Weather!! Send me a location",
-                                  "quick_replies": quick_replies_list}
-                  }),
-                  headers={'Content-type': 'application/json'})
+    send_message(recipient_id, "Hey, It's Noob Weather!! Send me a location")
 
 
 # uses PyMessenger to send response to user
