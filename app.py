@@ -144,7 +144,7 @@ def call_weather_api(url):
 
 
 def init(recipient_id):
-    send_message(recipient_id, "Hey, It's Noob Weather!! Send me a location")
+    send_message(recipient_id, "Hey, It's Noob Weather!! Send me a city name")
 
 
 # uses PyMessenger to send response to user
