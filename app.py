@@ -6,7 +6,7 @@ import requests
 import json
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAARgYhgQdwABANLTtwMYsmqPrV2kGbF88IrPgEm24Jku1qgNjn6gv7rBtE6617pKO3n6OSectEuiJZC79VZBjC2cHATE8vsONpWZCv2RJVbV1BgskZAVzmm4Jma8r37BtRLDGNj907xIWHOmBVZBPzgvdaVLlZADqK5ZBHq7JquhwZDZD'
+ACCESS_TOKEN = 'EAARgYhgQdwABAFyEPZArxLbR3NZBwZBZALyxtiizhEVBJ4MnlGPznAoDbZBRJ6TQRf7gpHypJLcZCeJ8N4XKoS7L6zDmmZAtsXnacAzY0ZCyXZB2ZAi9WUo4VZBTdVo5LOlO8pRGRzYsfvyMxQMZAQ8r3dcySQieJyy84jXQ8MOyV1wJtkAbhBPs0ZBoNEfRMdVfMdtkZD'
 VERIFY_TOKEN = 'dhanushkabro'
 bot = Bot(ACCESS_TOKEN)
 BASE_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=7cf5d8961ea0214a980859a54766e28f&units=metric'
