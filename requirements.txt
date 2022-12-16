@@ -1,4 +1,2 @@
-Flask==0.12.2
-gunicorn==19.6.0
-requests==2.10.0
-pymessenger==0.0.7.0
+docutils==0.19
+six==1.16.0
